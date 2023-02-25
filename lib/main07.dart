@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project1/main06.dart';
 
 const String _src =
     "https://img2.baidu.com/it/u=2596823598,3774591149&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=450";
@@ -9,7 +8,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ListView(children: <Widget>[
+    return  ListView(children: <Widget>[
       ListTile(
         leading: Icon(
           Icons.home,
@@ -143,7 +142,7 @@ class MyHorList extends StatelessWidget {
             //decoration: const BoxDecoration(color: Colors.red),
             child: Column(
               children: [
-                 SizedBox(
+                SizedBox(
                   height:100,
                   child: Image.network(_src1,fit:BoxFit.cover),
                 ),
@@ -221,7 +220,7 @@ main() {
     home: Scaffold(
       appBar: AppBar(
           title:
-              const Text("Flutter Project1", style: TextStyle(fontSize: 30))),
+          const Text("Flutter Project1", style: TextStyle(fontSize: 30))),
       body: const MyHorList(),
     ),
   ));
