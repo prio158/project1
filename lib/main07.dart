@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project1/main06.dart';
+
 
 const String _src =
     "https://img2.baidu.com/it/u=2596823598,3774591149&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=450";
@@ -9,7 +9,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ListView(children: <Widget>[
+    return  ListView(children: <Widget>[
       ListTile(
         leading: Icon(
           Icons.home,
