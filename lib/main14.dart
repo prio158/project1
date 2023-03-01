@@ -75,6 +75,7 @@ class _InputBoxState extends State<InputBox> {
       if (_focusNode.hasFocus) {
         setState(() {
           _borderColor = Colors.blue;
+          _errorTextDisplay = null;
         });
       } else {
         setState(() {
@@ -93,9 +94,7 @@ class _InputBoxState extends State<InputBox> {
       _borderColor = Colors.red;
     }
 
-    return Container(
-      margin: const EdgeInsets.all(20),
-          child: TextField(
+    return TextField(
             autofocus: true,
             focusNode: _focusNode,
             style: const TextStyle(color: Colors.black,fontSize: 20) ,
@@ -134,7 +133,6 @@ class _InputBoxState extends State<InputBox> {
                 }
               }
             },
-          ),
       );
   }
 }
