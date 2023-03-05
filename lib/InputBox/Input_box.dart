@@ -95,7 +95,7 @@ class _InputBoxState extends State<InputBox> {
     }
 
     return TextField(
-            autofocus: true,
+            autofocus: false,
             focusNode: _focusNode,
             style: const TextStyle(color: Colors.black,fontSize: 20) ,
             decoration:  InputDecoration(
