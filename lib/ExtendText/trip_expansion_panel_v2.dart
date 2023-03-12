@@ -60,7 +60,7 @@ class _TripExpansionPanelState extends State<TripExpansionPanel> {
             ),
           Container(
             //TODO：根据设计稿设置边距
-            margin: const EdgeInsetsDirectional.only(end: 16.0),
+            margin: const EdgeInsets.only(right: 16.0),
             child: ExpandIcon(
               size: 30,
               isExpanded: _isExpandedState,
