@@ -36,50 +36,49 @@ class EmailValidator implements Validator{
 }
 
 
-
+/**
+ * @param hintText 提示暗文
+ * @param labelText 输入框类型文本
+ * @param errorText 错误文本提示
+ * @param validator 文本校验
+ * */
 class InputBox extends StatefulWidget {
-  String? _hintText;
-  String? _labelText;
-  String? _errorText;
-  Validator? _validator;
+  final  String? hintText;
+  final String? labelText;
+  final String? errorText;
+  final Validator? validator;
 
-  InputBox({String? hintText,String? labelText,String? errorText,Validator? validator,Key? key}) : super(key: key){
-    _hintText = hintText;
-    _labelText = labelText;
-    _errorText = errorText;
-    _validator = validator;
-  }
+  const InputBox({Key? key, this.hintText, this.labelText, this.errorText, this.validator}) : super(key: key);
 
   @override
   State<InputBox> createState() => _InputBoxState();
 }
 
 class _InputBoxState extends State<InputBox> {
-  String? _hintText;
-  String? _labelText;
-  String? _errorText;
-  Validator? _validator;
-  String? _errorTextDisplay;
-  Color? _borderColor;
+  String? hintText;
+  String? labelText;
+  String? errorText;
+  Validator? validator;
+  String? errorTextDisplay;
+  Color borderColor = Colors.grey;
 
   @override
   void initState() {
-    _hintText =  widget._hintText;
-    _errorText = widget._errorText;
-    _validator = widget._validator;
-    _errorTextDisplay = null ;
-    _labelText = widget._labelText;
+    hintText =  widget.hintText;
+    errorText = widget.errorText;
+    validator = widget.validator;
+    labelText = widget.labelText;
 
     _focusNode.addListener(() {
       /** 输入框被选中*/
       if (_focusNode.hasFocus) {
         setState(() {
-          _borderColor = Colors.blue;
-          _errorTextDisplay = null;
+          borderColor = Colors.blue;
+          errorTextDisplay = null;
         });
       } else {
         setState(() {
-          _borderColor = Colors.grey;
+          borderColor = Colors.grey;
         });
       }
     });
@@ -90,8 +89,8 @@ class _InputBoxState extends State<InputBox> {
   Widget build(BuildContext context) {
 
     /** 错误: 红色*/
-    if(_errorTextDisplay!=null){
-      _borderColor = Colors.red;
+    if(errorTextDisplay!=null){
+      borderColor = Colors.red;
     }
 
     return TextField(
@@ -101,34 +100,33 @@ class _InputBoxState extends State<InputBox> {
             decoration:  InputDecoration(
               /** 未聚焦时的边框设置*/
               enabledBorder: OutlineInputBorder(
-                borderSide:  BorderSide(color:_borderColor ?? Colors.grey,width: 2),
+                borderSide:  BorderSide(color:borderColor ?? Colors.grey,width: 2),
                 borderRadius: BorderRadius.circular(8),
               ),
               /** 聚焦后的边框设置*/
               focusedBorder:OutlineInputBorder(
-                borderSide:  BorderSide(color:_borderColor ?? Colors.blue,width: 2),
+                borderSide:  BorderSide(color:borderColor ?? Colors.blue,width: 2),
                 borderRadius: BorderRadius.circular(8),
               ),
-              labelText: _labelText,
-              labelStyle: TextStyle(color:_borderColor,fontSize: 16),
+              labelText: labelText,
+              labelStyle: TextStyle(color:borderColor,fontSize: 16),
               border: InputBorder.none,
-              hintText: _hintText,
+              hintText: hintText,
               hintStyle:const TextStyle(color:Colors.grey,fontSize: 20),
-              helperText: _errorTextDisplay,
+              helperText: errorTextDisplay,
               helperStyle: const TextStyle(color:Colors.red,fontSize: 13)
-
             ),
             onSubmitted: (value){
-              if (_validator != null) {
-                bool checkResult = _validator!.checkText(value);
+              if (validator != null) {
+                bool checkResult = validator!.checkText(value);
                 if (checkResult) {
                   /*校验通过，不展示error文本*/
                   setState(() {
-                    _errorTextDisplay = null;
+                    errorTextDisplay = null;
                   });
                 } else {
                   setState(() {
-                    _errorTextDisplay = _errorText;
+                    errorTextDisplay = errorText;
                   });
                 }
               }
